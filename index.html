@@ -472,16 +472,16 @@
             'I Really Want to Stay at Your House [Rbgw_rduQpM].mp3',
             'Is There Someone Else_ [QgMYdDKVkrw] (1).mp3',
             'Loverboy [teXToWOu9AQ].mp3',
-            'Notion [3vEiql5d3Q].mp3',
+            'Notion.mp3',
             'orbit [Z9jgsAXl6us].mp3',
-            'Out of My League [4d2l6Sls_bk].mp3',
+            'Out of My League.mp3',
             'Out of Time [2yqYAsUpdSc].mp3',
             'Riptide [En_6WWOWh8E].mp3',
-            'See You Again [EZEt62LpaqHg].mp3',
+            'See You Again.mp3',
             'Something About You [hY7eMYA5VyQ].mp3',
-            'THE SHADE [GtVxl5E0JHE].mp3',
+            'THE SHADE.mp3',
             'There Is a Light That Never Goes Out (2011 Remaster) [3r-qDvD3F3c].mp3',
-            'Those Eyes (Sped Up) [jKRW9ZV8Qzl].mp3'
+            'Those Eyes (Sped Up).mp3'
         ];
 
         const FINAL_SONG = 'Sailor Song [zDKG9LhxjFQ].mp3';
@@ -539,7 +539,7 @@
                     const videoPath = VIDEO_FILES[currentRiddle];
                     memoryDisplay.innerHTML = `
                         <div style="background: white; padding: 20px; border-radius: 16px; border: 2px solid #ec4899; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1); max-width: 600px; margin: 0 auto;">
-                            <video width="100%" style="border-radius: 12px; margin-bottom: 15px; aspect-ratio: 16/9; object-fit: cover;" controls>
+                            <video width="100%" style="border-radius: 12px; margin-bottom: 15px; max-height: 400px; object-fit: contain;" controls>
                                 <source src="${videoPath}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -610,9 +610,20 @@
             audio.src = randomSong;
             audio.volume = 0.3;
             audio.loop = false;
+            audio.crossOrigin = "anonymous";
+            
+            audio.oncanplay = function() {
+                console.log('Song loaded and playing:', randomSong);
+            };
+            
+            audio.onerror = function() {
+                console.error('Failed to load song:', randomSong);
+            };
+            
             audio.play().catch((err) => {
-                console.log('Audio play failed:', err);
+                console.error('Audio play failed for:', randomSong, err);
             });
+            
             isPlayingMusic = true;
         }
 
