@@ -466,25 +466,25 @@
         ];
 
         const SONGS_ARRAY = [
-            'double take.mp3',
-            'End of Beginning.mp3',
-            'frou frou.mp3',
-            'I Really Want to Stay at Your House.mp3',
-            'Is There Someone Else.mp3',
-            'Loverboy.mp3',
-            'Notion.mp3',
-            'orbit.mp3',
-            'Out of My League.mp3',
-            'Riptide.mp3',
-            'See You Again.mp3',
-            'THE SHADE.mp3',
-            'There Is a Light That Never Goes Out.mp3',
-            'Those Eyes (Sped Up).mp3',
-            'Out of Time.mp3',
-            'Something About You.mp3'
+            'double take [lY0fGK5Zos4].mp3',
+            'End of Beginning [kf5pXDhx5Vc].mp3',
+            'frou frou - a new kind of love (speed up & reverb) [0dHULcPxtb0].mp3',
+            'I Really Want to Stay at Your House [Rbgw_rduQpM].mp3',
+            'Is There Someone Else_ [QgMYdDKVkrw] (1).mp3',
+            'Loverboy [teXToWOu9AQ].mp3',
+            'Notion [3vEiql5d3Q].mp3',
+            'orbit [Z9jgsAXl6us].mp3',
+            'Out of My League [4d2l6Sls_bk].mp3',
+            'Out of Time [2yqYAsUpdSc].mp3',
+            'Riptide [En_6WWOWh8E].mp3',
+            'See You Again [EZEt62LpaqHg].mp3',
+            'Something About You [hY7eMYA5VyQ].mp3',
+            'THE SHADE [GtVxl5E0JHE].mp3',
+            'There Is a Light That Never Goes Out (2011 Remaster) [3r-qDvD3F3c].mp3',
+            'Those Eyes (Sped Up) [jKRW9ZV8Qzl].mp3'
         ];
 
-        const FINAL_SONG = 'Sailor Song.mp3';
+        const FINAL_SONG = 'Sailor Song [zDKG9LhxjFQ].mp3';
 
         let unlockedMemories = new Set();
         let currentRiddle = null;
@@ -538,8 +538,8 @@
                 if (currentRiddle < VIDEO_FILES.length) {
                     const videoPath = VIDEO_FILES[currentRiddle];
                     memoryDisplay.innerHTML = `
-                        <div style="background: white; padding: 20px; border-radius: 16px; border: 2px solid #ec4899; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1);">
-                            <video width="100%" controls style="border-radius: 12px; margin-bottom: 15px;">
+                        <div style="background: white; padding: 20px; border-radius: 16px; border: 2px solid #ec4899; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1); max-width: 600px; margin: 0 auto;">
+                            <video width="100%" style="border-radius: 12px; margin-bottom: 15px; aspect-ratio: 16/9; object-fit: cover;" controls>
                                 <source src="${videoPath}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
