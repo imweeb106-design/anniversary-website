@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Made It 💕 - 2 Years of Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0a0a;
+            --primary-light: #f8f4ff;
+            --accent-dark: #2d1b4e;
+            --accent-light: #e8d5f2;
+            --pink: #ec4899;
+            --purple: #a855f7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #f0e6ff 100%);
+            color: var(--primary-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .corner-photo {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            border: 3px solid var(--pink);
+            object-fit: cover;
+            z-index: 1;
+            box-shadow: 0 8px 24px rgba(236, 72, 153, 0.3);
+        }
+
+        .photo-tl { top: 20px; left: 20px; }
+        .photo-tr { top: 20px; right: 20px; }
+        .photo-bl { bottom: 20px; left: 20px; }
+        .photo-br { bottom: 20px; right: 20px; }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .landing {
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(232, 213, 242, 0.6) 0%, rgba(232, 213, 242, 0.3) 100%);
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .landing h1 {
+            font-size: 64px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--pink), var(--purple), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .landing p {
+            font-size: 24px;
+            color: var(--accent-dark);
+            margin-bottom: 40px;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .countdown-box {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px solid var(--pink);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.15);
+        }
+
+        .countdown-box .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--pink);
+        }
+
+        .countdown-box .label {
+            font-size: 12px;
+            color: var(--accent-dark);
+            margin-top: 8px;
+        }
+
+        .memories {
+            background: linear-gradient(135deg, rgba(232, 213, 242, 0.5) 0%, rgba(232, 213, 242, 0.2) 100%);
+            padding: 60px 40px;
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .memories h2 {
+            font-size: 48px;
+            background: linear-gradient(90deg, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .memories p {
+            text-align: center;
+            color: var(--accent-dark);
+            margin-bottom: 40px;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .memory-card {
+            background: white;
+            border: 2px solid var(--accent-light);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1);
+        }
+
+        .memory-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--pink);
+            box-shadow: 0 12px 24px rgba(236, 72, 153, 0.2);
+        }
+
+        .memory-card .icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .memory-card .title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .memory-card .status {
+            font-size: 12px;
+            color: var(--accent-dark);
+            margin-top: 8px;
+        }
+
+        .memory-display {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 4px solid var(--pink);
+            margin: 30px 0;
+            line-height: 1.8;
+            color: var(--accent-dark);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1);
+            font-style: italic;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, white 0%, var(--accent-light) 100%);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.3);
+            border: 2px solid var(--pink);
+        }
+
+        .modal-content h3 {
+            color: var(--pink);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .riddle-text {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--accent-dark);
+            border-left: 4px solid var(--pink);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: 2px solid var(--accent-light);
+            border-radius: 12px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--pink);
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--pink), var(--purple));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--pink);
+            border: 2px solid var(--pink);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-light);
+        }
+
+        .final {
+            background: linear-gradient(135deg, rgba(45, 27, 78, 0.2) 0%, rgba(232, 213, 242, 0.3) 100%);
+            padding: 60px 40px;
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .final h2 {
+            text-align: center;
+            color: var(--primary-dark);
+            margin-bottom: 40px;
+            font-size: 48px;
+        }
+
+        .letter-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 30px auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(236, 72, 153, 0.2);
+            border: 2px solid var(--pink);
+        }
+
+        .video-section {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border: 2px solid var(--accent-light);
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1);
+        }
+
+        .video-section h3 {
+            color: var(--pink);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .video-section video {
+            width: 100%;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .landing h1 { font-size: 40px; }
+            .memories h2 { font-size: 32px; }
+            .countdown { grid-template-columns: repeat(2, 1fr); }
+            .memory-grid { grid-template-columns: repeat(2, 1fr); }
+            .corner-photo { width: 60px; height: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Corner Photos -->
+    <img src="photos/cubbon park.jpeg" class="corner-photo photo-tl" alt="Photo 1" onerror="this.style.display='none'">
+    <img src="photos/garba.jpeg" class="corner-photo photo-tr" alt="Photo 2" onerror="this.style.display='none'">
+    <img src="photos/konakunte2.jpeg" class="corner-photo photo-bl" alt="Photo 3" onerror="this.style.display='none'">
+    <img src="photos/konakunte4.jpeg" class="corner-photo photo-br" alt="Photo 4" onerror="this.style.display='none'">
+
+    <div class="container">
+
+        <!-- LANDING -->
+        <div class="section landing active" id="landing">
+            <h1>We Made It 💕</h1>
+            <p>2 Years of Us</p>
+            <div class="countdown">
+                <div class="countdown-box">
+                    <div class="number" id="days">00</div>
+                    <div class="label">Days</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="hours">00</div>
+                    <div class="label">Hours</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="minutes">00</div>
+                    <div class="label">Minutes</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="seconds">00</div>
+                    <div class="label">Seconds</div>
+                </div>
+            </div>
+            <p>A journey through our favorite moments, memories, and promises...</p>
+            <button class="btn-primary" onclick="switchSection('memories')">Begin Our Story</button>
+        </div>
+
+        <!-- MEMORIES -->
+        <div class="section memories" id="memories">
+            <h2>Our Memories</h2>
+            <p>Solve the riddles to unlock our precious moments</p>
+            <div class="memory-grid" id="memoryGrid"></div>
+            <div id="memoryDisplay"></div>
+        </div>
+
+        <!-- RIDDLE MODAL -->
+        <div class="modal" id="riddleModal">
+            <div class="modal-content">
+                <h3>🔐 <span id="riddleTitle">Riddle</span></h3>
+                <div class="riddle-text" id="riddleText">Question goes here</div>
+                <p style="font-size: 12px; color: var(--accent-dark); margin-bottom: 15px;">💡 <span id="hintText">Hint</span></p>
+                <input type="text" id="riddleAnswer" placeholder="Your answer..." onkeypress="if(event.key==='Enter') checkAnswer()">
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="closeRiddle()">Close</button>
+                    <button class="btn-primary" onclick="checkAnswer()">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FINAL SEQUENCE (HIDDEN UNTIL ALL RIDDLES SOLVED) -->
+        <div class="section final" id="final" style="display: none;">
+            <h2>Happy 2 Years 💌</h2>
+            
+            <img src="photos/letter.jpeg" class="letter-image" alt="Your Love Letter">
+            
+            <div class="video-section">
+                <h3>🎥 Our Journey</h3>
+                <p>All 26 videos of our beautiful moments together...</p>
+                <video id="montageVideo" width="100%" controls style="margin-top: 20px;"></video>
+                <p style="margin-top: 15px; font-size: 12px; color: var(--accent-dark);">🎵 Sailor Song playing...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BACKGROUND AUDIO -->
+    <audio id="bgAudio" preload="auto" crossorigin="anonymous" style="display: none;"></audio>
+
+    <!-- MUSIC PLAYER BUTTON -->
+    <button id="musicToggle" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, #a855f7); color: white; font-size: 28px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4); z-index: 50; transition: all 0.3s ease;" title="Toggle Music">🎵</button>
+
+    <script>
+        const RIDDLES = [
+            { title: "Getting Close", riddle: "I got smaller every day between you two", answer: "distance", hint: "The space shrinking", memory: "Every day I felt you getting closer. The distance between us kept shrinking and I couldn't stop it. All I could think about was you." },
+            { title: "Aug 14 Night", riddle: "That's what you called me after our night alone", answer: "friend", hint: "Just a ___ right?", memory: "That night at co-anchoring changed everything for me. The next day you called me 'just a friend' but we both knew it was more. I was falling and couldn't stop." },
+            { title: "Sept 16 Confession", riddle: "I finally told you everything", answer: "truth", hint: "Being honest", memory: "I told you everything that day. All my feelings, all my fears, everything. You didn't answer right away but I knew you were thinking about it." },
+            { title: "Her Diary", riddle: "You worried about this with me", answer: "distance", hint: "Long ___", memory: "You wrote in your diary about the long distance worry. You were scared but you loved me anyway. That meant everything to me." },
+            { title: "Your Joy", riddle: "I couldn't stop doing this when I found out", answer: "jump", hint: "Leap up high", memory: "When you finally said yes, I couldn't stop jumping. Pure joy, pure happiness. You chose us and I was floating." },
+            { title: "Diary Exchange", riddle: "Every night I wrote, you read in morning", answer: "diary", hint: "Secret notebook", memory: "Our diary exchange was the most precious thing. Every night I poured my heart out and every morning you read it. Those words were us." },
+            { title: "Children's Day", riddle: "You got mad at me for this at the mall", answer: "clothes", hint: "What I was shopping for", memory: "You got mad when I was shopping for clothes that day at the mall. But I could see you smile even when you were annoyed. The bus ride back was when I realized how much I needed you." },
+            { title: "Dec 17 Proposal", riddle: "I filled this with chits of my feelings", answer: "shuttle", hint: "Container of love", memory: "I filled that shuttle box with chits of all the reasons why I love you. Proposing to you was the best decision I ever made. You said yes and made me the happiest guy alive." },
+            { title: "First Outing", riddle: "You asked me to do this (something I thought impossible)", answer: "tie", hint: "Your ___ laces", memory: "You asked me to tie your laces and I was shocked. You were so egoistic but I loved that about you. That day roaming the mall together, just us, was everything." },
+            { title: "Her Place", riddle: "You cooked while I annoyed you in the kitchen", answer: "beautiful", hint: "You were ___", memory: "I kept annoying you while you cooked in your kitchen. But honestly you were the most beautiful person I've ever seen that day. The way you moved, the way you lived - you took my breath away." },
+            { title: "Nexus - Escalator", riddle: "We kissed on these with your friend nearby", answer: "escalator", hint: "Moving stairs", memory: "Nexus was our place. We kissed on those escalators with your friend nearby and I didn't care if anyone saw. You were all that mattered." },
+            { title: "Nexus - Stairs", riddle: "I held you up going down and kissed you, you turned this color", answer: "pink", hint: "Blushing shade", memory: "I held you up on the stairs and kissed you. You turned so pink, blushing so hard. You looked perfect and I remember thinking I never want to let you go." },
+            { title: "Nexus - Adopted Child", riddle: "We felt like this when we bought her a silver pendant", answer: "parents", hint: "Guardians", memory: "We bought her a silver pendant and we felt like parents. Like we were taking care of something together. It made me think about our future with you." },
+            { title: "Nexus - Noodles", riddle: "We kissed while eating this on the stairs", answer: "noodles", hint: "Pasta dish", memory: "Noodles on the stairs at Nexus. We kissed between bites and it was the most intimate, casual, perfect moment. Those little moments matter the most." },
+            { title: "Cubbon Park", riddle: "You looked so pretty I gave you this secret code", answer: "p", hint: "One letter", memory: "Cubbon Park - you lying on my lap with popsicles. You looked so pretty that I gave you my secret code 'p'. I met your brother that day and everything felt so right." },
+            { title: "Italian Cafe", riddle: "You moved your chair to sit right next to me", answer: "close", hint: "Proximity", memory: "At the Italian cafe you moved your chair right next to me. I was looking for shower gel but all I could think about was you being so close. That's when I knew for sure." },
+            { title: "Airbnb Dec", riddle: "This happened for the first time between us", answer: "physical", hint: "Intimate ___", memory: "The Airbnb in December was special. We crossed a line and became even closer. Everything changed that night and I fell deeper in love with you." },
+            { title: "Birthday Dinner", riddle: "Your mom and her ganged up on me that night", answer: "gangup", hint: "Teamed together", memory: "Your mom and you ganged up on me at your birthday dinner. I was outnumbered but I loved every second of it. Your family became my family that night." },
+            { title: "After Boards", riddle: "We did this in the arcade, bowling & racing", answer: "games", hint: "Fun activities", memory: "Arcade, bowling, go-kart racing - we did it all after boards. We laughed so much. Then we danced and everything felt perfect." },
+            { title: "Protection", riddle: "We bought this but couldn't use it cuz of our friends", answer: "condoms", hint: "Protection ___", memory: "We bought condoms but couldn't use them because our friends were there. It was funny but also sweet - we had so many moments interrupted by life but we didn't care." },
+            { title: "Dancing", riddle: "We did this when everyone came back", answer: "dance", hint: "Moving to music", memory: "When everyone came back we danced together. Just us moving to music, feeling everything. Those moments of just existing with you are my favorite." },
+            { title: "Bangalore", riddle: "You waited for me here for the first time, then photobooth made me late for my flight", answer: "churchstreet", hint: "Holy place ___", memory: "You waited for me at Church Street in Bangalore. The photobooth made me late for my flight but I didn't care. You were scared of being seen in public but you did it for us. That's when I knew forever." }
+        ];
+
+        const VIDEO_FILES = [
+            'videos/cubbon park2.mp4', 'videos/cubbon park3.mp4', 'videos/cubbon park4.mp4', 'videos/cubbon park6.mp4',
+            'videos/lalu birthday.mp4', 'videos/lalu birthday2.mp4', 'videos/lalu birthday3.mp4', 'videos/lalu birthday4.mp4', 'videos/lalu birthday5.mp4', 'videos/lalu birthday6.mp4', 'videos/lalu birthday7.mp4',
+            'videos/konakunte1.mp4', 'videos/konakunte3.mp4', 'videos/konakunte5.mp4', 'videos/konakunte6.mp4', 'videos/konakunte7.mp4', 'videos/konakunte8.mp4', 'videos/konakunte9.mp4', 'videos/konakunte10.mp4', 'videos/konakunte11.mp4', 'videos/konakunte12.mp4',
+            'videos/may end.mp4', 'videos/garba.jpeg'
+        ];
+
+        const SONGS_ARRAY = [
+            'music/double take.mp3',
+            'music/End of Beginning.mp3',
+            'music/frou frou.mp3',
+            'music/I Really Want to Stay at Your House.mp3',
+            'music/Is There Someone Else.mp3',
+            'music/Loverboy.mp3',
+            'music/Notion.mp3',
+            'music/orbit.mp3',
+            'music/Out of My League.mp3',
+            'music/Riptide.mp3',
+            'music/See You Again.mp3',
+            'music/THE SHADE.mp3',
+            'music/There Is a Light That Never Goes Out.mp3',
+            'music/Those Eyes (Sped Up).mp3',
+            'music/Out of Time.mp3',
+            'music/Something About You.mp3'
+        ];
+
+        const FINAL_SONG = 'music/Sailor Song.mp3';
+
+        let unlockedMemories = new Set();
+        let currentRiddle = null;
+        let isPlayingMusic = false;
+
+        function createMemoryGrid() {
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+            RIDDLES.forEach((riddle, idx) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.onclick = () => { if (!unlockedMemories.has(idx)) openRiddle(idx); };
+                card.innerHTML = `
+                    <div class="icon">${unlockedMemories.has(idx) ? '🔓' : '🔒'}</div>
+                    <div class="title">${riddle.title}</div>
+                    <div class="status">${unlockedMemories.has(idx) ? 'Unlocked' : 'Solve riddle'}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openRiddle(idx) {
+            currentRiddle = idx;
+            const riddle = RIDDLES[idx];
+            document.getElementById('riddleTitle').textContent = riddle.title;
+            document.getElementById('riddleText').textContent = `"${riddle.riddle}"`;
+            document.getElementById('hintText').textContent = riddle.hint;
+            document.getElementById('riddleAnswer').value = '';
+            document.getElementById('riddleModal').classList.add('active');
+            document.getElementById('riddleAnswer').focus();
+        }
+
+        function closeRiddle() {
+            document.getElementById('riddleModal').classList.remove('active');
+            currentRiddle = null;
+        }
+
+        function checkAnswer() {
+            const input = document.getElementById('riddleAnswer').value.toLowerCase().trim();
+            const correct = RIDDLES[currentRiddle].answer.toLowerCase();
+            
+            if (input === correct) {
+                playRandomSong();
+                unlockedMemories.add(currentRiddle);
+                createMemoryGrid();
+                
+                const riddle = RIDDLES[currentRiddle];
+                const memoryDisplay = document.getElementById('memoryDisplay');
+                
+                // Show video if available
+                if (currentRiddle < VIDEO_FILES.length) {
+                    const videoPath = VIDEO_FILES[currentRiddle];
+                    memoryDisplay.innerHTML = `
+                        <div style="background: white; padding: 20px; border-radius: 16px; border: 2px solid #ec4899; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1);">
+                            <video width="100%" controls style="border-radius: 12px; margin-bottom: 15px;">
+                                <source src="${videoPath}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <p style="color: #2d1b4e; font-style: italic; margin: 0;">${riddle.memory}</p>
+                        </div>
+                    `;
+                } else {
+                    // No video, just show memory text
+                    memoryDisplay.innerHTML = `<div class="memory-display">${riddle.memory}</div>`;
+                }
+                
+                memoryDisplay.style.display = 'block';
+                closeRiddle();
+                
+                // Scroll to memory/video
+                setTimeout(() => {
+                    memoryDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+                
+                alert('✅ Correct! Memory unlocked! 💕');
+                
+                // Check if all riddles solved
+                if (unlockedMemories.size === RIDDLES.length) {
+                    setTimeout(() => {
+                        showFinalSurprise();
+                    }, 500);
+                }
+            } else {
+                alert('❌ Not quite right. Try again! 💭');
+                document.getElementById('riddleAnswer').value = '';
+                document.getElementById('riddleAnswer').focus();
+            }
+        }
+
+        function showFinalSurprise() {
+            switchSection('final');
+            playFinalSong();
+            loadVideoMontage();
+            alert('🎉 ALL MEMORIES UNLOCKED! Enjoy your surprise! 💕');
+        }
+
+        function loadVideoMontage() {
+            const video = document.getElementById('montageVideo');
+            let currentIndex = 0;
+            
+            function loadNextVideo() {
+                if (currentIndex < VIDEO_FILES.length) {
+                    const videoPath = VIDEO_FILES[currentIndex];
+                    video.src = videoPath;
+                    currentIndex++;
+                    video.play().catch(() => {});
+                }
+            }
+            
+            video.addEventListener('ended', loadNextVideo);
+            loadNextVideo();
+        }
+
+        function switchSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function playRandomSong() {
+            const randomSong = SONGS_ARRAY[Math.floor(Math.random() * SONGS_ARRAY.length)];
+            const audio = document.getElementById('bgAudio');
+            audio.src = randomSong;
+            audio.volume = 0.3;
+            audio.loop = false;
+            audio.play().catch((err) => {
+                console.log('Audio play failed:', err);
+            });
+            isPlayingMusic = true;
+        }
+
+        function playFinalSong() {
+            const audio = document.getElementById('bgAudio');
+            audio.src = FINAL_SONG;
+            audio.volume = 0.4;
+            audio.loop = true;
+            audio.crossOrigin = "anonymous";
+            audio.play().catch((err) => {
+                console.log('Audio play failed:', err);
+            });
+            isPlayingMusic = true;
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('bgAudio');
+            if (isPlayingMusic) {
+                audio.pause();
+                isPlayingMusic = false;
+            } else {
+                audio.play().catch((err) => {
+                    console.log('Audio play failed:', err);
+                });
+                isPlayingMusic = true;
+            }
+        }
+
+        function startCountdown() {
+            const now = new Date();
+            const tonight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+            const anniversaryDate = tonight.getTime();
+            
+            setInterval(() => {
+                const currentTime = new Date().getTime();
+                const distance = anniversaryDate - currentTime;
+                
+                if (distance < 0) return;
+                
+                document.getElementById('days').textContent = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById('hours').textContent = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+            }, 1000);
+        }
+
+        document.getElementById('musicToggle').addEventListener('click', toggleMusic);
+
+        createMemoryGrid();
+        startCountdown();
+    </script>
+
+</body>
+</html>
